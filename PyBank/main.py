@@ -2,7 +2,7 @@
 import csv
 import os
 path = os.path.join( '.', 'Resources', 'budget_data.csv')
-output = os.path.join( '.', 'output', 'output.csv')
+output = os.path.join( '.', 'output', 'pybank_output.csv')
 
 #Create variables
 #To be assigned values later
