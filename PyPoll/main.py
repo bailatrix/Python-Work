@@ -2,15 +2,17 @@
 import csv
 import os
 path = os.path.join('.', 'Resources', 'election_data.csv')
+output_path = os.path.join('.', 'output', 'output.csv')
 
 #Package variables
 votes = 0
 candidates = {}
-winner = ("Dr. Seuss", 1000000 )
+winner = ("Dr. Seuss", 0 )
 
 #Open election data
 with open( path, newline='') as csvFile:
     reader = csv.reader( csvFile, delimiter= ',')
+    next(reader)
 
     #Loop through all rows of data in file
     #Increase total vote count
@@ -37,11 +39,27 @@ print( f"Total Votes: {votes}" )
 print( "__________________________" )
 
 #Printing all candidates, respective percent of votes, count of votes
-for key, value in candidates.iteritems():
-    perc = int ((value / votes) * 10000 ) / 1000
+for key, value in candidates.items():
+    perc = int ((value / votes) * 100000 ) / 1000
     print( f"{key}: {perc}% ({value})" )
 
 #Print winner
 print( "__________________________" )
-print( f"Winner: {Winner}" )
+print( f"Winner: {winner[0]}" )
 print( "__________________________" )
+
+with open( output_path, 'w', newline='') as csvFile:
+    writer = csv.writer( csvFile, delimiter=',')
+
+    writer.writerow( "Election Results" )
+    writer.writerow( "________________________" )
+    writer.writerow( f"Total Votes: {votes}" )
+    writer.writerow( "________________________" )
+    
+    for key,value in candidates.items():
+        perc = int((value / votes) * 100000 ) / 1000
+        writer.writerow( f"{key}: {perc}% ({value})" )
+
+    writer.writerow( "________________________" )
+    writer.writerow( f"Winner: {winner[0]}" )
+    writer.writerow( "________________________" )
