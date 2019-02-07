@@ -2,7 +2,7 @@
 import csv
 import os
 path = os.path.join('.', 'Resources', 'election_data.csv')
-output_path = os.path.join('.', 'output', 'output.csv')
+output_path = os.path.join('.', 'output', 'pypoll_output.csv')
 
 #Package variables
 votes = 0
